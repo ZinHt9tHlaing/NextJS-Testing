@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import Dashboard from "./@dashboard/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,9 +22,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  dashboard,
 }: Readonly<{
   children: React.ReactNode;
+  dashboard: React.ReactNode;
 }>) {
+  const isAdmin = true;
+
   return (
     <html lang="en">
       <body
@@ -32,6 +37,7 @@ export default function RootLayout({
         <div className="px-8 min-h-screen">
           <Header />
           {children}
+          {isAdmin && dashboard}
         </div>
         <Footer />
       </body>
